@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="/js/index.js"></script>
+    <title>Study community 로그인</title>
+</head>
+<body>
+
+<div id="login-form">
+    <h2>Study Community</h2>
+    <input type="text" placeholder="아이디" name="username" class="login-name-box">
+    <br>
+    <input type="password" placeholder="비밀번호" name="password" class="login-pw-box">
+    <br>
+    <button id="login-button" onclick="login()">로그인</button>
+    <div id="no-member">아직 회원이 아니신가요?</div>
+    <button id="signup-button" onclick="location.href='/users/signup'">회원 가입</button>
+</div>
+
+</body>
+</html>
