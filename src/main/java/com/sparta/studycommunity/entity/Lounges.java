@@ -20,19 +20,19 @@ public class Lounges {
     private Long id;
 
     @Column(nullable = false)
-    private String user_id;
+    private String userId;
 
     @Column(nullable = false)
     private String contents;
 
     @Column(nullable = false)
-    private Long like_Count;
+    private Long likeCount;
 
     @Column(nullable = false)
-    private Timestamp create_at;
+    private Timestamp createAt;
 
     public Lounges(LoungesRequestDto requestDto) {
-        this.user_id = requestDto.getUser_id();
+        this.userId = requestDto.getUser_id();
         this.contents = requestDto.getContents();
     }
 }

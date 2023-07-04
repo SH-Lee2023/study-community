@@ -1,6 +1,5 @@
 package com.sparta.studycommunity.service;
 
-import com.sparta.studycommunity.controller.LoungesController;
 import com.sparta.studycommunity.dto.LoungesRequestDto;
 import com.sparta.studycommunity.dto.LoungesResponseDto;
 import com.sparta.studycommunity.entity.Lounges;
@@ -8,7 +7,6 @@ import com.sparta.studycommunity.repository.LoungesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

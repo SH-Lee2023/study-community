@@ -2,12 +2,11 @@ package com.sparta.studycommunity.controller;
 
 import com.sparta.studycommunity.dto.LoungesRequestDto;
 import com.sparta.studycommunity.dto.LoungesResponseDto;
-import com.sparta.studycommunity.entity.Lounges;
 import com.sparta.studycommunity.service.LoungesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
 @RestController
 
