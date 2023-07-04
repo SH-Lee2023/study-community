@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -22,11 +19,7 @@ public class Tag {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "tag")
-    private List<PostTag> postTagList = new ArrayList<>();
-
-    public Tag(String str) {
-        String name = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+    public Tag(String name) {
         this.name = name;
     }
 }
