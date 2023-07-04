@@ -1,37 +1,43 @@
 package com.sparta.studycommunity.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "posts")
 @NoArgsConstructor
+public class Post extends Timestamped {
 
-public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String contents;
-    private String imageUrl;
-    private String tag;
-    private LocalDateTime createdAt;
 
-    public Post(String title, String contents, String imageUrl, String tag) {
-        this.title = title;
-        this.contents = contents;
-        this.imageUrl = imageUrl;
-        this.tag = tag;
-        this.createdAt = LocalDateTime.now();
+    @Column(nullable = false)
+    private String image;
 
-    }
+    @Column(nullable = false)
+    private Integer scrapCount;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    private List<PostTag> postTagList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> commentList = new ArrayList<>();
 }
