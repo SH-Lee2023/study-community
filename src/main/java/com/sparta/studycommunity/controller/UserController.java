@@ -1,10 +1,13 @@
 package com.sparta.studycommunity.controller;
 
 import com.sparta.studycommunity.dto.SignupRequestDto;
+import com.sparta.studycommunity.security.UserDetailsImpl;
 import com.sparta.studycommunity.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +27,8 @@ public class UserController {
 
     // 커뮤니티 메인 페이지로 이동
     @GetMapping("/home")
-    public String mainPage() {
+    public String mainPage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        model.addAttribute("username", userDetails.getUsername());
         return "community";
     }
     
