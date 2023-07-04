@@ -52,7 +52,7 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    private Post findPost(Long id) {
+    public Post findPost(Long id) {
         return postRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
