@@ -39,7 +39,7 @@ public class LoungesService {
         Lounges lounges = loungesRepository.findById(loungeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid lounge ID: " + loungeId));
 
-        lounges.setLike_Count(lounges.getLike_Count() + 1);
+        lounges.setLikeCount(lounges.getLikeCount() + 1);
         loungesRepository.save(lounges);
 
     }

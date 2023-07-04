@@ -26,7 +26,13 @@ public class Post extends Timestamped {
     private String contents;
 
     @Column(nullable = false)
+    private String imageUrl;
+
+    @Column(nullable = false)
     private String image;
+
+    @Column(nullable = false)
+    private String tag;
 
     @Column(nullable = false)
     private Integer scrapCount;
@@ -40,4 +46,13 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
+
+    public Post(String title, String contents, String imageUrl, String tag, Integer scrapCount, User user) {
+        this.title = title;
+        this.contents = contents;
+        this.imageUrl = imageUrl;
+        this.tag = tag;
+        this.scrapCount = scrapCount;
+        this.user = user;
+    }
 }

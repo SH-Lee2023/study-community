@@ -32,7 +32,7 @@ public class Lounges {
     private Timestamp createAt;
 
     public Lounges(LoungesRequestDto requestDto) {
-        this.userId = requestDto.getUser_id();
+        this.userId = requestDto.getUserId();
         this.contents = requestDto.getContents();
     }
 }
