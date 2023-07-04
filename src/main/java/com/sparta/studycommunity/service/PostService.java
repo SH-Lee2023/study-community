@@ -27,10 +27,10 @@ public class PostService {
     public PostResponseDto createPost(PostRequestDto requestDto) {
         String title = requestDto.getTitle();
         String contents = requestDto.getContents();
-        String imageUrl = requestDto.getImageUrl();
+        String image = requestDto.getImage();
         String tag = requestDto.getTag();
 
-        Post post = new Post(title, contents, imageUrl, tag, 0, null);
+        Post post = new Post(title, contents, image, tag, 0, null);
         Post savedPost = postRepository.save(post);
         return new PostResponseDto(savedPost);
     }
@@ -38,7 +38,7 @@ public class PostService {
     public PostResponseDto updatePost(Long postId, PostRequestDto requestDto) {
         String title = requestDto.getTitle();
         String contents = requestDto.getContents();
-        String imageUrl = requestDto.getImageUrl();
+        String image = requestDto.getImage();
         String tag = requestDto.getTag();
 
         Post existingPost = postRepository.findById(postId)
@@ -46,7 +46,7 @@ public class PostService {
 
         existingPost.setTitle(title);
         existingPost.setContents(contents);
-        existingPost.setImageUrl(imageUrl);
+        existingPost.setImage(image);
         existingPost.setTag(tag);
 
         Post updatedPost = postRepository.save(existingPost);

@@ -16,12 +16,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/posts")
+
 public class PostController {
 
     private final PostService postService;
 
-    @PostMapping
+    @PostMapping("/posts")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto requestDto) {
         PostResponseDto createdPost = postService.createPost(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);

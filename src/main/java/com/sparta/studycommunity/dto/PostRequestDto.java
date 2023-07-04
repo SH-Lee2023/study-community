@@ -10,13 +10,13 @@ import lombok.Setter;
 public class PostRequestDto {
     private String title;
     private String contents;
-    private String imageUrl;
+    private String image;
     private String tag;
 
-    public PostRequestDto(String title, String contents, String imageUrl, String tag) {
+    public PostRequestDto(String title, String contents, String image, String tag) {
         this.title = title;
         this.contents = contents;
-        this.imageUrl = imageUrl;
+        this.image = image;
         this.tag = tag;
     }
 }
