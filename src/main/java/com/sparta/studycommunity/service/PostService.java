@@ -1,5 +1,6 @@
 package com.sparta.studycommunity.service;
 
+import com.sparta.studycommunity.dto.PostRequestDto;
 import com.sparta.studycommunity.dto.PostResponseDto;
 import com.sparta.studycommunity.entity.Post;
 import com.sparta.studycommunity.entity.PostTag;
@@ -23,6 +24,41 @@ public class PostService {
     private final TagRepository tagRepository;
     private final PostTagRepository postTagRepository;
 
+    public PostResponseDto createPost(PostRequestDto requestDto) {
+        String title = requestDto.getTitle();
+        String contents = requestDto.getContents();
+        String image = requestDto.getImage();
+        String tag = requestDto.getTag();
+
+        Post post = new Post(title, contents, image, tag, 0, null);
+        Post savedPost = postRepository.save(post);
+        return new PostResponseDto(savedPost);
+    }
+
+    public PostResponseDto updatePost(Long postId, PostRequestDto requestDto) {
+        String title = requestDto.getTitle();
+        String contents = requestDto.getContents();
+        String image = requestDto.getImage();
+        String tag = requestDto.getTag();
+
+        Post existingPost = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 모집글을 찾을 수 없습니다."));
+
+        existingPost.setTitle(title);
+        existingPost.setContents(contents);
+        existingPost.setImage(image);
+        existingPost.setTag(tag);
+
+        Post updatedPost = postRepository.save(existingPost);
+        return new PostResponseDto(updatedPost);
+    }
+
+    public void deletePost(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 모집글을 찾을 수 없습니다."));
+
+        postRepository.delete(post);
+    }
     public void addTag(Long postId, Long tagId) {
         Post post = findPost(postId);
         Tag tag = findTag(tagId);
@@ -52,7 +88,7 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    private Post findPost(Long id) {
+    public Post findPost(Long id) {
         return postRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
@@ -67,4 +103,5 @@ public class PostService {
     private Page<Post> findPostsWithTags(List<Long> tagIds, Pageable pageable) {
         return postRepository.findAllByPostTagList_TagIdIn(tagIds, pageable);
     }
+
 }
