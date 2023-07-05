@@ -36,8 +36,28 @@ public class HomeController {
         return "profile";
     }
 
-//    @PutMapping("/users/{id}")
-//    public ResponseEntity updateProfile(@PathVariable Long id, @RequestBody ProfileRequestDto requestDto) {
-//        return profileService.updateProfile(id, requestDto);
-//    }
+    @GetMapping("/projects/write")
+    public String recruitPage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        model.addAttribute("username", userDetails.getUsername());
+        model.addAttribute("id", userDetails.getUser().getId());
+        model.addAttribute("nickname", userDetails.getUser().getNickname());
+        return "recruit";
+    }
+
+    @GetMapping("/projects")
+    public String projectPage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        model.addAttribute("username", userDetails.getUsername());
+        model.addAttribute("id", userDetails.getUser().getId());
+        model.addAttribute("nickname", userDetails.getUser().getNickname());
+        return "project";
+    }
+
+    @GetMapping("/lounges")
+    public String loungePage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        model.addAttribute("username", userDetails.getUsername());
+        model.addAttribute("id", userDetails.getUser().getId());
+        model.addAttribute("nickname", userDetails.getUser().getNickname());
+        return "lounge";
+    }
+
 }

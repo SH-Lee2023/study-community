@@ -20,40 +20,49 @@
         </div>
         <button id="logout-button" onclick="logout()">로그아웃</button>
     </div>
-    <div class="tool-bar">
-        <ul class="nav-li">
-            <li>
-                <a href="/home" class="nav-home">홈</a>
-                <a href="/aaa" class="nav-writePost">모집 만들기</a>
-                <a href="/posts" class="nav-post">스터디/프로젝트</a>
-                <a href="/lounges" class="nav-lounge">라운지</a>
-                <a href="/profiles" class="nav-profile">마이페이지</a>
-            </li>
-        </ul>
-    </div>
+    <div class="wrap-content">
+        <div class="tool-bar">
+            <ul class="nav-li">
+                <li>
+                    <a href="/home" class="nav-home">홈</a>
+                </li>
+                <li>
+                    <a href="/projects/write" class="nav-writePost">모집 만들기</a>
+                </li>
+                <li>
+                    <a href="/projects" class="nav-post">스터디/프로젝트</a>
+                </li>
+                <li>
+                    <a href="/lounges" class="nav-lounge">라운지</a>
+                </li>
+                <li>
+                    <a href="/profiles" class="nav-profile">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+        <div class="profile-content">
+            <div class="myProfile">
+                <p>내 프로필</p>
+    <!--            <button th:data-id="${id}" class="edit-profile-button" onclick="editProfile(this.getAttribute('data-id'))">-->
+    <!--                수정-->
+    <!--            </button>-->
+                <label>닉네임</label>
+                <input id="edit-nickname" th:placeholder="${nickname}"></input>
+                <button th:data-id="${id}" class="edit-profile-button" onclick="editProfile(this.getAttribute('data-id'))">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                         width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0V0z"></path>
+                        <path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 000-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"></path>
+                    </svg>
+                    <span>수정</span>
+                </button>
 
-    <div class="profile-content">
-        <div class="myProfile">
-            <p>내 프로필</p>
-<!--            <button th:data-id="${id}" class="edit-profile-button" onclick="editProfile(this.getAttribute('data-id'))">-->
-<!--                수정-->
-<!--            </button>-->
-            <label>닉네임</label>
-            <input id="edit-nickname" th:placeholder="${nickname}"></input>
-            <button th:data-id="${id}" class="edit-profile-button" onclick="editProfile(this.getAttribute('data-id'))">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                     width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                    <path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 000-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"></path>
-                </svg>
-                <span>수정</span>
-            </button>
+            </div>
+            <div class="myScrap">
+                <p>내 스크랩</p>
+            </div>
 
         </div>
-        <div class="myScrap">
-            <p>내 스크랩</p>
-        </div>
-
     </div>
 </div>
 </body>

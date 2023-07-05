@@ -44,7 +44,7 @@ public class UserController {
         return userService.signup(requestDto);
     }
 
-    // 닉네임 수정
+    // nickname 수정
     @PutMapping("/users/{id}")
     @ResponseBody
     public ResponseEntity updateProfile(@PathVariable Long id, @RequestBody ProfileRequestDto requestDto) {
