@@ -55,6 +55,18 @@ public class PostController {
         return ResponseEntity.ok().body(new ApiResponseDto("게시글 삭제 성공", HttpStatus.OK.value()));
     }
 
+    @PostMapping("/posts/{id}/scrap")
+    public ResponseEntity<ApiResponseDto> scrapPost(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+       postService.scrapPost(id, userDetails.getUser());
+        return ResponseEntity.ok().body(new ApiResponseDto("게시글 스크랩 성공", HttpStatus.OK.value()));
+    }
+
+    @DeleteMapping("/posts/{id}/scrap")
+    public ResponseEntity<ApiResponseDto> unscrapPost(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        postService.unscrapPost(id, userDetails.getUser());
+        return ResponseEntity.ok().body(new ApiResponseDto("게시글 스크랩 취소 성공", HttpStatus.OK.value()));
+    }
+
     @PostMapping("/posts/{postId}/tags")
     public ResponseEntity<ApiResponseDto> addTag(@PathVariable Long postId, @RequestParam Long tagId) {
         postService.addTag(postId, tagId);

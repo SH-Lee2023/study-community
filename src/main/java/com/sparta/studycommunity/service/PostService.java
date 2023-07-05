@@ -2,13 +2,11 @@ package com.sparta.studycommunity.service;
 
 import com.sparta.studycommunity.dto.PostRequestDto;
 import com.sparta.studycommunity.dto.PostResponseDto;
-import com.sparta.studycommunity.entity.Post;
-import com.sparta.studycommunity.entity.PostTag;
-import com.sparta.studycommunity.entity.Tag;
-import com.sparta.studycommunity.entity.User;
+import com.sparta.studycommunity.entity.*;
 import com.sparta.studycommunity.repository.PostRepository;
 import com.sparta.studycommunity.repository.PostTagRepository;
 import com.sparta.studycommunity.repository.TagRepository;
+import com.sparta.studycommunity.repository.UserScrapRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +24,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
     private final PostTagRepository postTagRepository;
+    private final UserScrapRepository userScrapRepository;
 
     public PostResponseDto createPost(PostRequestDto requestDto, User user) {
         Post post = postRepository.save(new Post(requestDto, user));
@@ -57,6 +56,24 @@ public class PostService {
     public void deletePost(Long id) {
         Post post = findPost(id);
         postRepository.delete(post);
+    }
+
+    public void scrapPost(Long id, User user) {
+        Post post = findPost(id);
+        post.setScrapCount(post.getScrapCount() + 1);
+        Optional<UserScrap> duplicatedScrap = userScrapRepository.findByPostAndUser(post, user);
+        if(duplicatedScrap.isPresent()) {
+            throw new IllegalArgumentException("이미 스크랩한 게시글입니다.");
+        }
+        userScrapRepository.save(new UserScrap(post, user));
+    }
+
+    public void unscrapPost(Long id, User user) {
+        Post post = findPost(id);
+        post.setScrapCount(post.getScrapCount() - 1);
+        UserScrap scrap = userScrapRepository.findByPostAndUser(post, user).orElseThrow(() ->
+                new IllegalArgumentException("이미 스크랩한 게시글만 취소할 수 있습니다."));
+        userScrapRepository.delete(scrap);
     }
 
     public void addTag(Long postId, Long tagId) {
