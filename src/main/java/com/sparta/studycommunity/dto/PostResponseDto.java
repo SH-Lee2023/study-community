@@ -41,6 +41,5 @@ public class PostResponseDto {
                             .map(CommentResponseDto::new)
                             .sorted(Comparator.comparing(CommentResponseDto::getCreatedAt).reversed())
                             .toList();
-
     }
 }
