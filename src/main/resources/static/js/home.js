@@ -10,13 +10,14 @@ function goHome() {
 
 function editProfile(id) {
     let nickname = $('#edit-nickname').val()
-    let data = {'username': nickname};
+    let data = {'nickname': nickname};
     $.ajax({
         type: "PUT",
         url: `/users/${id}`,
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (response) {
+            alert("닉네임 수정")
             window.location.reload();
         },
         error: function(response) {

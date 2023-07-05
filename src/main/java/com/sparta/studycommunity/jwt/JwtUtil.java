@@ -48,12 +48,12 @@ public class JwtUtil {
         return AUTHORIZATION_HEADER;
     }
     // jwt 생성
-    public String createToken(Long id, UserRoleEnum role) {
+    public String createToken(String username, UserRoleEnum role) {
         Date date = new Date();
 
         return BEARER_PREFIX +
                 Jwts.builder()
-                        .setSubject(String.valueOf(id)) // 사용자 식별자값(ID)
+                        .setSubject(username) // 사용자 식별자값(ID)
                         .claim(AUTHORIZATION_KEY, role) // 사용자 권한, claim은 key-value를 넣을 수 있음
                         .setExpiration(new Date(date.getTime() + TOKEN_TIME)) // 만료 시간
                         .setIssuedAt(date) // 발급일

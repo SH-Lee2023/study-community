@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class ProfileRequestDto {
-    private String username;
+    private String nickname;
 }

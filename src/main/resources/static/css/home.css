@@ -16,6 +16,14 @@
 
 #logout-button {
     float:right;
+    width: 56px;
+    height: 36px;
+    font-size: 10px;
+    background-color: coral;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
 }
 
 .tool-bar {
@@ -34,4 +42,33 @@
 }
 .myScrap {
     font-weight: bold;
+}
+#home-button {
+    width: 56px;
+    height: 36px;
+    font-size: 10px;
+    background-color: coral;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
+}
+.edit-profile-button {
+    width: 74px;
+    height: 36px;
+    background-color: #ffffff;
+    color: coral;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid;
+    font-size: 100%;
+}
+#edit-nickname {
+    width: 512px;
+    height: 36px;
+    font-size: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
 }

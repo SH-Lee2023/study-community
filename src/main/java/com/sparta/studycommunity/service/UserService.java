@@ -50,7 +50,7 @@ public class UserService {
         UserRoleEnum role = UserRoleEnum.USER;
 
         // 사용자 등록
-        User user = new User(username, passwordDecoded, password, role);
+        User user = new User(username, null, passwordDecoded, password, role);
         userRepository.save(user);
 
         // response, 상황에 따라 임의로 더 정확한 상태 코드 반환

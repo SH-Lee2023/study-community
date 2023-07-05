@@ -32,6 +32,7 @@ public class HomeController {
     public String profilePage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         model.addAttribute("username", userDetails.getUsername());
         model.addAttribute("id", userDetails.getUser().getId());
+        model.addAttribute("nickname", userDetails.getUser().getNickname());
         return "profile";
     }
 

@@ -22,6 +22,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column
+    private String nickname;
+
     @Column(nullable = false)
     private String passwordDecoded;
 
@@ -38,14 +41,15 @@ public class User {
     @OneToMany(mappedBy = "user", cascade =  {CascadeType.ALL})
     private List<Post> postList = new ArrayList<>();
 
-    public User(String username, String passwordDecoded, String password, UserRoleEnum role) {
+    public User(String username, String nickname, String passwordDecoded, String password, UserRoleEnum role) {
         this.username = username;
+        this.nickname = nickname;
         this.passwordDecoded = passwordDecoded;
         this.password = password;
         this.role =role;
     }
 
     public void update(ProfileRequestDto profileRequestDto) {
-        this.username = profileRequestDto.getUsername();
+        this.nickname = profileRequestDto.getNickname();
     }
 }
