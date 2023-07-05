@@ -49,6 +49,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             Claims info = jwtUtil.getUserInfoFromToken(tokenValue);
 
             try {
+                log.info("로그인 시도하다 들어옴");
+                System.out.println(info.getSubject());
                 setAuthentication(info.getSubject());
             } catch (Exception e) {
                 log.error(e.getMessage());
@@ -60,17 +62,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     }
 
     // 인증 처리
-    public void setAuthentication(String username) {
+    public void setAuthentication(String id) {
         SecurityContext context = SecurityContextHolder.createEmptyContext(); // 빈 SecurityContext 생성
-        Authentication authentication = createAuthentication(username); // UsernamePasswordAuthenticationToken
+        Authentication authentication = createAuthentication(id); // UsernamePasswordAuthenticationToken
         context.setAuthentication(authentication); // 빈 SecurityContext에 Authentication 담기
 
         SecurityContextHolder.setContext(context); // ContextHolder에 context 담기
     }
 
     // 인증 객체 생성, Authentication 객체 중 하나인 UsernamePasswordAuthenticationToken을 만들어서 반환해줌
-    private Authentication createAuthentication(String username) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+    private Authentication createAuthentication(String id) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(id);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }

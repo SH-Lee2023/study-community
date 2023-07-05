@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="/js/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <title>SC | 스터디 커뮤니티</title>
+</head>
+<body>
+<div class="wrap">
+    <div class="home-header">
+        <button id="home-button" onclick="goHome()">가자 7조</button>
+        <div id="header-user">
+            <span th:text="${username}"></span>님
+        </div>
+        <button id="logout-button" onclick="logout()">로그아웃</button>
+    </div>
+    <div class="tool-bar">
+        <ul class="nav-li">
+            <li>
+                <a href="/home" class="nav-home">홈</a>
+                <a href="/aaa" class="nav-writePost">모집 만들기</a>
+                <a href="/posts" class="nav-post">스터디/프로젝트</a>
+                <a href="/lounges" class="nav-lounge">라운지</a>
+                <a href="/profiles" class="nav-profile">마이페이지</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

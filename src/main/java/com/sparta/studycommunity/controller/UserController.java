@@ -25,13 +25,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // 커뮤니티 메인 페이지로 이동
-    @GetMapping("/home")
-    public String mainPage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        model.addAttribute("username", userDetails.getUsername());
-        return "community";
-    }
-    
     // 회원가입 페이지로 이동
     @GetMapping("/users/signup")
     public String signupPage() {
