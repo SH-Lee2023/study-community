@@ -35,6 +35,9 @@ public class User {
     @Enumerated(value = EnumType.STRING) // Enum 타입을 db에 저장할때 사용하는 어노테이션
     private UserRoleEnum role;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserScrap> scrapList;
+
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Comment> commentList = new ArrayList<>();
 
@@ -46,7 +49,7 @@ public class User {
         this.nickname = nickname;
         this.passwordDecoded = passwordDecoded;
         this.password = password;
-        this.role =role;
+        this.role = role;
     }
 
     public void update(ProfileRequestDto profileRequestDto) {

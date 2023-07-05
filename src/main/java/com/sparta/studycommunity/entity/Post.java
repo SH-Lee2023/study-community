@@ -1,5 +1,6 @@
 package com.sparta.studycommunity.entity;
 
+import com.sparta.studycommunity.dto.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "posts")
 @NoArgsConstructor
+@Table(name = "posts")
 public class Post extends Timestamped {
 
     @Id
@@ -29,9 +30,6 @@ public class Post extends Timestamped {
     private String image;
 
     @Column(nullable = false)
-    private String tag;
-
-    @Column(nullable = false)
     private Integer scrapCount;
 
     @ManyToOne
@@ -44,12 +42,17 @@ public class Post extends Timestamped {
     @OneToMany(mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
 
-    public Post(String title, String contents, String image, String tag, Integer scrapCount, User user) {
-        this.title = title;
-        this.contents = contents;
-        this.image = image;
-        this.tag = tag;
-        this.scrapCount = scrapCount;
+    public Post(PostRequestDto requestDto, User user) {
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
+        this.image = requestDto.getImage();
+        this.scrapCount = 0;
         this.user = user;
+    }
+
+    public void update(PostRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
+        this.image = requestDto.getImage();
     }
 }
