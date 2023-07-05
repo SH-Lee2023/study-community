@@ -1,10 +1,12 @@
 package com.sparta.studycommunity.entity;
 
+import com.sparta.studycommunity.dto.ProfileRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column
+    private String nickname;
+
     @Column(nullable = false)
     private String passwordDecoded;
 
@@ -33,10 +38,21 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserScrap> scrapList;
 
-    public User(String username, String passwordDecoded, String password, UserRoleEnum role) {
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade =  {CascadeType.ALL})
+    private List<Post> postList = new ArrayList<>();
+
+    public User(String username, String nickname, String passwordDecoded, String password, UserRoleEnum role) {
         this.username = username;
+        this.nickname = nickname;
         this.passwordDecoded = passwordDecoded;
         this.password = password;
         this.role = role;
+    }
+
+    public void update(ProfileRequestDto profileRequestDto) {
+        this.nickname = profileRequestDto.getNickname();
     }
 }

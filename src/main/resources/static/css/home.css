@@ -1,0 +1,103 @@
+.home-header {
+    grid-area: header;
+    box-sizing: border-box;
+    height: calc(6rem - 1px);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+#home-button {
+    margin-left: 45px;
+    width: 56px;
+    height: 36px;
+    font-size: 10px;
+    background-color: coral;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
+}
+#header-user {
+    float:right;
+    font-weight: bold;
+}
+#logout-button {
+    margin-right: 45px;
+    float:right;
+    width: 56px;
+    height: 36px;
+    font-size: 10px;
+    background-color: coral;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0px;
+    cursor: pointer;
+}
+
+.tool-bar {
+    position: sticky;
+    top: 6rem;
+    height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-right: 1px solid black;
+    width: 200px;
+}
+.nav-li {
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    line-height: 50px;
+    font-size: 1.3rem;
+    list-style-type: none;
+}
+ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.profile-content {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    transform: translate(-30%, -20%);
+}
+.myProfile {
+    font-weight: bold;
+}
+.myScrap {
+    font-weight: bold;
+}
+.edit-profile-button {
+    width: 74px;
+    height: 36px;
+    background-color: #ffffff;
+    color: coral;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid;
+    font-size: 100%;
+}
+#edit-nickname {
+    width: 512px;
+    height: 36px;
+    font-size: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+}

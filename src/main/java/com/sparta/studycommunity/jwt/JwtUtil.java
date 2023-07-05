@@ -76,21 +76,6 @@ public class JwtUtil {
             logger.error(e.getMessage());
         }
     }
-    public void deleteCookie(String token, HttpServletResponse res) {
-        try {
-            token = URLEncoder.encode(token, "utf-8").replaceAll("\\+", "%20"); // Cookie Value 에는 공백이 불가능해서 encoding 진행
-
-            Cookie cookie = new Cookie(AUTHORIZATION_HEADER, null); // Name-Value, cookie 클래스 import 받아서 사용
-            cookie.setMaxAge(0);
-            cookie.setPath("/");
-
-            // Response 객체에 Cookie 추가
-            res.addCookie(cookie);
-        } catch (UnsupportedEncodingException e) {
-            logger.error(e.getMessage());
-        }
-
-    }
 
     // JWT substring
     public String substringToken(String tokenValue) {

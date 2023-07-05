@@ -1,7 +1,9 @@
 package com.sparta.studycommunity.controller;
 
+import com.sparta.studycommunity.dto.ProfileRequestDto;
 import com.sparta.studycommunity.dto.SignupRequestDto;
 import com.sparta.studycommunity.security.UserDetailsImpl;
+import com.sparta.studycommunity.service.ProfileService;
 import com.sparta.studycommunity.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -10,28 +12,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class UserController {
     private final UserService userService;
+    public final ProfileService profileService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ProfileService profileService) {
         this.userService = userService;
+        this.profileService = profileService;
     }
 
-    // 커뮤니티 메인 페이지로 이동
-    @GetMapping("/home")
-    public String mainPage(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        model.addAttribute("username", userDetails.getUsername());
-        return "community";
-    }
-    
     // 회원가입 페이지로 이동
     @GetMapping("/users/signup")
     public String signupPage() {
@@ -50,5 +44,11 @@ public class UserController {
         return userService.signup(requestDto);
     }
 
+    // nickname 수정
+    @PutMapping("/users/{id}")
+    @ResponseBody
+    public ResponseEntity updateProfile(@PathVariable Long id, @RequestBody ProfileRequestDto requestDto) {
+        return profileService.updateProfile(id, requestDto);
+    }
 
 }
