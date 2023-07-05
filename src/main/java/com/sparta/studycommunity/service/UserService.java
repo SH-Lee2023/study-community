@@ -50,7 +50,7 @@ public class UserService {
         UserRoleEnum role = UserRoleEnum.USER;
 
         // 사용자 등록
-        User user = new User(username, passwordDecoded, password, role);
+        User user = new User(username, null, passwordDecoded, password, role);
         userRepository.save(user);
 
         // response, 상황에 따라 임의로 더 정확한 상태 코드 반환
@@ -60,41 +60,4 @@ public class UserService {
         return ResponseEntity.ok().body(signupResponseDto);
     }
 
-//    public ResponseEntity login(LoginRequestDto requestDto, HttpServletResponse res) {
-//        String username = requestDto.getUsername();
-//        String password = requestDto.getPassword();
-//
-//        // username 확인
-//        Optional<User> checkUsername = userRepository.findByUsername(username);
-//        if (checkUsername.isEmpty()) {
-//            ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto();
-//            exceptionResponseDto.setMsg("회원을 찾을 수 없습니다.");
-//            exceptionResponseDto.setStatusCode(400);
-//            return ResponseEntity.badRequest().body(exceptionResponseDto);
-//        }
-//
-//        // User 객체 받아오기
-//        User user = userRepository.findByUsername(username).get();
-//
-//        // password 확인
-//        if (!passwordEncoder.matches(password, user.getPassword())) {
-//            ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto();
-//            exceptionResponseDto.setMsg("회원을 찾을 수 없습니다.");
-//            exceptionResponseDto.setStatusCode(400);
-//            return ResponseEntity.badRequest().body(exceptionResponseDto);
-//        }
-//
-//        // JWT 생성, header에 저장, 쿠키에 저장 후 Response 객체에 추가
-//        String token = jwtUtil.createToken(user.getUsername(), user.getRole());
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set(jwtUtil.getAuthorizationHeader(), token);
-//        jwtUtil.addJwtToCookie(token, res);
-//
-//        // 클라이언트에 response 반환
-//        LoginResponseDto loginResponseDto = new LoginResponseDto();
-//        loginResponseDto.setMsg("로그인 성공");
-//        loginResponseDto.setStatusCode(200);
-//
-//        return ResponseEntity.ok().headers(headers).body(loginResponseDto);
-//    }
 }
